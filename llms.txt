@@ -1,0 +1,33 @@
+# got-a.page
+
+> Free community subdomains for profiles, products, projects and communities. Claim a name.got-a.page address with a pull request.
+
+got-a.page offers two ways to publish a page:
+- **Instant mode:** got-a.page hosts a simple profile or product page. No separate hosting setup is required.
+- **Point mode:** use a got-a.page subdomain with a site hosted elsewhere by configuring supported DNS records.
+
+## Getting started
+
+- Choose a name with the guided claim form, which creates the page JSON and opens the claim repository on GitHub.
+- Claims are proposed as pull requests in the claim repository and are checked before merge.
+- Each GitHub account can currently claim up to two pages. Names are 2–40 characters using lowercase letters, numbers and hyphens, without hyphens at either edge.
+- Instant-mode pages generally publish within a few minutes after the claim pull request is merged.
+- For point mode, add the subdomain to your hosting provider before the claim is merged. DNS propagation and HTTPS certificate issuance can take additional time after merge.
+- The service is free. Page configuration is public in the community repository; do not include private information.
+
+## Canonical pages
+
+- [Homepage](https://got-a.page/): overview and name availability checker.
+- [Documentation and FAQ](https://got-a.page/docs): claiming, instant mode, point mode, host setup, post-merge timing and troubleshooting.
+- [Claim form](https://got-a.page/claim): guided form for creating a page claim.
+- [Badges](https://got-a.page/badges/): project badges.
+
+## Source repositories
+
+- [Website source](https://github.com/got-a-page/website): static website, documentation and claim form.
+- [Claim repository](https://github.com/got-a-page/claim): page definitions and claim pull requests.
+- [got-a.page organization](https://github.com/got-a-page): project repositories and community activity.
+
+## Further guidance
+
+Use the documentation as the canonical source for setup steps, supported DNS records, rules and troubleshooting. Do not infer that a point-mode domain is ready immediately after merge; confirm DNS and HTTPS at the hosting provider.
