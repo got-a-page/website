@@ -34,31 +34,33 @@
     pages visited, approximate region, device and browser type. How Google handles that data is described
     in <a href="https://policies.google.com/technologies/partner-sites">Google's partner-sites policy</a>.
     Pages without the tag, including the gallery and this page, collect nothing through it.</p>
-    <p><strong>Claimed pages are never tracked.</strong> Instant pages we render and point-mode pages on your
-    own host carry no got-a.page analytics, no got-a.page cookies and no got-a.page ads.</p>
+    <p><strong>Claimed pages carry no got-a.page analytics or ads.</strong> Instant pages we render include
+    no got-a.page analytics, cookies or advertising. Point-mode pages are served entirely by the owner's own
+    hosting - what they collect or show is governed by that owner's policies, not this one.</p>
 
     <h3>What a claim makes public</h3>
     <p>Claiming a page creates a pull request on the public
     <a href="https://github.com/got-a-page/claim">got-a-page/claim</a> repository. Your GitHub username and
-    the contents of your page file (name, tagline, links and records) are public, forever, as part of the
-    repository's history. Never put private data in your page file.</p>
+    the contents of your page file (name, tagline, links and records) are public and may persist in the
+    repository's history even if later edited or removed. Never put private data in your page file.</p>
 
     <h3>What we don't do</h3>
     <ul>
       <li>No accounts or sign-ups on got-a.page itself - claiming works through your own GitHub account.</li>
-      <li>No got-a.page analytics, cookies or advertising on claimed subdomains.</li>
+      <li>No got-a.page analytics, cookies or advertising in the instant pages we render.</li>
+      <li>For point-mode names we publish DNS records only; the site behind the name is the owner's own.</li>
     </ul>
 
     <h3>Infrastructure providers</h3>
     <p>Serving got-a.page involves a small set of providers, each covered by its own privacy policy:
     GitHub (this website, the claim repository and pull requests) and Cloudflare (DNS and the worker that
-    renders instant pages). When you follow a point-mode subdomain, you leave our infrastructure entirely -
-    that page is hosted and governed by its owner.</p>
+    renders instant pages). Point-mode pages are hosted and governed by their owners and the hosts they
+    choose, under their own policies.</p>
 
     <h3>Advertising</h3>
-    <p>We don't show ads today. If we enable advertising on the main website in the future, it will be
-    through Google AdSense and limited to the main site - claimed pages will stay ad-free. When ads are
-    enabled, Google and its partners may use cookies to serve and measure ads, as described in
+    <p>We don't show ads today. The standing decision for any future advertising is the main website only,
+    through Google AdSense - claimed pages stay ad-free. If ads are enabled on the main site, Google and
+    its partners may use cookies to serve and measure ads, as described in
     <a href="https://policies.google.com/technologies/ads">Google's advertising policy</a>. This page will
     be updated before any ads go live.</p>
 
