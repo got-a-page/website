@@ -21,6 +21,11 @@ nav{display:flex;align-items:center;justify-content:space-between;padding:1.1rem
 .brand span{color:var(--accent)}
 nav .links a{margin-left:1.2rem;text-decoration:none;color:var(--muted);font-size:.95rem}
 nav .links a:hover{color:var(--accent)}
+@media (max-width:560px){
+  nav{flex-wrap:wrap;row-gap:.4rem}
+  nav .links{display:flex;flex-wrap:wrap;justify-content:flex-end;gap:.4rem .9rem}
+  nav .links a{margin-left:0;font-size:.9rem}
+}
 .hero{text-align:center;padding:4.5rem 0 3.5rem}
 .hero h1{font-size:clamp(2.2rem,6vw,3.6rem);line-height:1.1;letter-spacing:-.02em}
 .hero h1 em{font-style:normal;color:var(--accent)}
