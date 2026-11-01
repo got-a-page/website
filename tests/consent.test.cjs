@@ -20,7 +20,7 @@ function makeNode(tag) {
   };
 }
 
-function setup({ analytics = true, stored = null, cookies = '' } = {}) {
+function setup({ analytics = true, stored = null, cookies = '', storageThrows = false } = {}) {
   const jar = new Map();
   for (const pair of cookies.split(';').map(s => s.trim()).filter(Boolean)) {
     const [k, v] = pair.split('=');
@@ -53,10 +53,13 @@ function setup({ analytics = true, stored = null, cookies = '' } = {}) {
     },
   });
   const storage = new Map(stored ? [['gap-consent', stored]] : []);
+  const localStorage = storageThrows
+    ? { getItem() { throw new Error('blocked'); }, setItem() { throw new Error('blocked'); } }
+    : { getItem: k => storage.get(k) ?? null, setItem: (k, v) => storage.set(k, v) };
   const context = {
     document,
     location: { hostname: 'got-a.page' },
-    localStorage: { getItem: k => storage.get(k) ?? null, setItem: (k, v) => storage.set(k, v) },
+    localStorage,
   };
   context.window = context;
   vm.createContext(context);
@@ -138,4 +141,21 @@ test('page without analytics: accept never loads GA there', () => {
   app.buttons().accept.click();
   assert.equal(app.storage.get('gap-consent'), 'accepted');
   assert.equal(app.loader(), null, 'no GA on pages without the analytics meta tag');
+});
+
+test('storage blocked: banner still shows, choices still work, nothing crashes', () => {
+  const app = setup({ storageThrows: true });
+  assert.ok(app.banner(), 'banner should appear when storage is unavailable');
+  app.buttons().accept.click();
+  assert.ok(app.loader(), 'accept still loads GA even if the choice cannot be stored');
+  assert.equal(app.banner(), null);
+});
+
+test('repeated accept does not duplicate the gtag tag', () => {
+  const app = setup();
+  app.buttons().accept.click();
+  app.openSettings();
+  assert.ok(app.banner(), 'settings reopens after accept');
+  app.buttons().accept.click();
+  assert.equal(app.context.document.head.children.filter(c => c.id === 'gap-ga-loader').length, 1, 'exactly one gtag loader tag');
 });
