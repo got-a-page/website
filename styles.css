@@ -85,3 +85,19 @@ input:focus,select:focus,textarea:focus{outline:2px solid var(--accent);border-c
 @media (max-width:36rem){.row{grid-template-columns:1fr}}
 #jsonOut{white-space:pre;min-height:8rem}
 .step{font-weight:700;color:var(--accent);margin-top:1.5rem}
+
+/* consent banner */
+.consent-banner{position:fixed;left:50%;transform:translateX(-50%);bottom:1rem;z-index:1000;
+width:calc(100% - 2rem);max-width:38rem;background:var(--surface);border:1px solid var(--ring);
+border-radius:1rem;padding:1.1rem 1.3rem;box-shadow:0 .5rem 2rem rgba(0,0,0,.22)}
+.consent-banner p{font-size:.92rem;color:var(--text);margin-bottom:.85rem;line-height:1.5}
+.consent-choices{display:flex;gap:.7rem;flex-wrap:wrap}
+.consent-btn{flex:1;min-width:7.5rem;border-radius:.7rem;padding:.6rem 1rem;font-size:.95rem;
+font-weight:600;cursor:pointer;font-family:inherit}
+.consent-accept{border:0;background:var(--accent);color:#fff}
+.consent-accept:hover{filter:brightness(1.07)}
+.consent-reject{background:transparent;color:var(--accent);border:2px solid var(--accent)}
+@media (max-width:420px){
+  .consent-banner{padding:.9rem 1rem}
+  .consent-btn{min-width:100%}
+}
