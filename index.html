@@ -111,6 +111,83 @@
     </div>
   </section>
 
+  <section id="example" aria-labelledby="example-heading">
+    <h2 id="example-heading">See the page before you claim</h2>
+    <p class="sub">An Instant page turns your title, links and About text into a small home on the web.
+    This is an illustrative example, not a claimed address or a real person's profile.</p>
+    <div class="example-grid">
+      <figure class="example-preview">
+        <figcaption>Example result · sunrise theme</figcaption>
+        <div class="preview-page">
+          <div class="preview-card">
+            <h3>Your Name</h3>
+            <p class="preview-tagline">Small projects, useful notes.</p>
+            <span class="preview-link">Project notes</span>
+            <div class="preview-about"><h4>About</h4>
+              <p>I build small tools and share what I learn along the way.</p>
+            </div>
+          </div>
+          <p class="preview-footer">Made with got-a.page - everyone's got a page.</p>
+        </div>
+        <p class="example-note">The link button is a non-interactive example. Your page's links open the HTTPS URLs you provide.</p>
+      </figure>
+      <div class="example-source">
+        <h3>The file behind it</h3>
+        <p>Save as <code>pages/your-page-name.json</code> in your claim PR. Replace the GitHub username,
+        title, text and example URL with your own. <code>showcase: false</code> keeps this example out of the gallery.</p>
+        <pre id="instant-example">{
+  "mode": "instant",
+  "owner": {
+    "github": "your-github-username"
+  },
+  "showcase": false,
+  "page": {
+    "type": "person",
+    "title": "Your Name",
+    "tagline": "Small projects, useful notes.",
+    "theme": "sunrise",
+    "links": [
+      {
+        "label": "Project notes",
+        "url": "https://example.com"
+      }
+    ],
+    "sections": [
+      {
+        "heading": "About",
+        "text": "I build small tools and share what I learn along the way."
+      }
+    ]
+  }
+}</pre>
+      </div>
+    </div>
+    <dl class="example-key">
+      <div><dt>Title and tagline</dt><dd><code>page.title</code> and <code>page.tagline</code> introduce you at the top.</dd></div>
+      <div><dt>Links and About</dt><dd><code>page.links</code> makes the buttons; <code>page.sections</code> adds headings and text below them.</dd></div>
+      <div><dt>Your address</dt><dd>The filename sets the address, not the title. Check availability first; this sample does not reserve a name.</dd></div>
+    </dl>
+    <p><a href="/claim">Build your own with the guided form</a> · <a href="/gallery/">Browse opted-in community pages</a></p>
+  </section>
+
+  <section id="choose" aria-labelledby="choose-heading">
+    <h2 id="choose-heading">Which mode should I choose?</h2>
+    <div class="modes">
+      <div class="card"><h3>Choose Instant for a small profile</h3>
+        <p>You want a title, a few links and some text, without managing a host or a build.
+        Edit the JSON in a new PR whenever your page changes. Instant pages have no got-a.page ads or analytics.</p>
+      </div>
+      <div class="card"><h3>Choose Point for your existing site</h3>
+        <p>You already have a portfolio, blog or app and want to keep its design and hosting.
+        Add your chosen address to your host before merge, then use its recommended DNS target.
+        <a href="/docs#hosts">Follow the steps for your host</a>.</p>
+      </div>
+    </div>
+    <p class="service-limits">Both modes need a GitHub account and a reviewed pull request. Each GitHub account can claim up to two pages.
+    Availability is not a reservation. Instant pages publish after merge and the index refresh; Point pages also wait for DNS and your host's HTTPS certificate.
+    <a href="/docs#troubleshooting">If a merged page does not load, start here</a>.</p>
+  </section>
+
   <section id="why">
     <h2>How claiming works</h2>
     <p class="sub">About a minute to propose your claim. Point mode also needs host setup.</p>
