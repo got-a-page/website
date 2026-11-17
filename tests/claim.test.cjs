@@ -4,13 +4,19 @@ const fs = require('node:fs');
 const vm = require('node:vm');
 const path = require('node:path');
 const html = fs.readFileSync(path.join(__dirname, '../claim/index.html'), 'utf8');
+function extractAppScript(page) {
+  const match = page.match(/<script[^>]*\bid="claim-form"[^>]*>([\s\S]*?)<\/script>/);
+  assert.ok(match, 'expected an inline script with id="claim-form"');
+  return match[1];
+}
+const script = extractAppScript(html);
 function setup() {
   const nodes = {};
   const document = { getElementById(id) { return nodes[id] ||= {
     value: '', hidden: true, checked: false, textContent: '',
     addEventListener(type, fn) { this[type] = fn; }, scrollIntoView() {},
   }; } };
-  vm.runInNewContext(html.match(/<script>([\s\S]*?)<\/script>/)[1], { document, URLSearchParams, location: { search: '' } });
+  vm.runInNewContext(script, { document, URLSearchParams, location: { search: '' } });
   for (const id of ['cname', 'gh', 'title', 'theme', 'tagline', 'links', 'about', 'showcase', 'hostKind', 'targetValue', 'purpose']) document.getElementById(id);
   nodes.cname.value = 'example-name'; nodes.gh.value = 'example-user';
   return { nodes, submit(mode) { nodes.mode.value = mode; nodes.claimForm.submit({ preventDefault() {} }); return JSON.parse(nodes.jsonOut.textContent); } };
@@ -28,4 +34,8 @@ test('instant confirmation does not show point-only instructions, including afte
   const app = setup(); app.submit('point');
   assert.equal(app.submit('instant').mode, 'instant');
   assert.equal(app.nodes.pointNextSteps.hidden, true);
+});
+test('an unrelated inline script does not change which code the tests run', () => {
+  const script = extractAppScript('<script>window.analyticsLoaded = true;</script>\n' + html);
+  assert.match(script, /document\.getElementById\("mode"\)/);
 });

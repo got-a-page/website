@@ -4,7 +4,13 @@ const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const vm = require('node:vm');
 const path = require('node:path');
-const script = fs.readFileSync(path.join(__dirname, '../index.html'), 'utf8').match(/<script>([\s\S]*?)<\/script>/)[1];
+const html = fs.readFileSync(path.join(__dirname, '../index.html'), 'utf8');
+function extractAppScript(page) {
+  const match = page.match(/<script[^>]*\bid="availability-checker"[^>]*>([\s\S]*?)<\/script>/);
+  assert.ok(match, 'expected an inline script with id="availability-checker"');
+  return match[1];
+}
+const script = extractAppScript(html);
 function setup() {
   const nodes = Object.fromEntries(['checker', 'name', 'result', 'count', '.counter'].map(id => [id, {
     value: '', textContent: '', className: '',
@@ -46,4 +52,8 @@ test('network failures and old data never imply availability; retry recovers', a
   assert.match(await app.check('dhanushnehru'), /could not be checked/);
   app.state.old = false;
   assert.match(await app.check('dhanushnehru'), /taken/);
+});
+test('an unrelated inline script does not change which code the tests run', () => {
+  const shifted = extractAppScript('<script>window.analyticsLoaded = true;</script>\n' + html);
+  assert.match(shifted, /const INDEX_URL/);
 });
