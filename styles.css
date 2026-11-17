@@ -101,3 +101,25 @@ font-weight:600;cursor:pointer;font-family:inherit}
   .consent-banner{padding:.9rem 1rem}
   .consent-btn{min-width:100%}
 }
+
+/* A complete, explicitly illustrative Instant page and its source. */
+.example-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);gap:1.5rem;align-items:start}
+.example-preview,.example-source{min-width:0}
+.example-preview figcaption{font-weight:700;margin-bottom:.7rem}
+.preview-page{background:var(--code);border:1px solid var(--ring);border-radius:1rem;padding:1.5rem}
+.preview-card{background:var(--surface);border:1px solid var(--ring);border-radius:1.25rem;padding:1.6rem}
+.preview-card h3{font-size:1.9rem;line-height:1.2;overflow-wrap:anywhere}
+.preview-tagline,.preview-about p{color:var(--muted);margin-top:.35rem}
+.preview-link{display:inline-block;margin-top:1.4rem;padding:.5rem 1rem;border:1px solid var(--ring);border-radius:999px;background:var(--bg)}
+.preview-about{margin-top:1.8rem}.preview-about h4{font-size:1.15rem}
+.preview-footer{margin-top:2rem;text-align:center;font-size:.85rem;color:var(--muted)}
+.example-note{font-size:.88rem;color:var(--muted);margin-top:.8rem}
+.example-source p,.service-limits{color:var(--muted)}
+.example-source pre{white-space:pre-wrap;overflow-wrap:anywhere}
+.example-key{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1rem;margin:1.5rem 0}
+.example-key dt{font-weight:700}.example-key dd{color:var(--muted);font-size:.95rem;overflow-wrap:anywhere}
+.service-limits{margin-top:1.4rem}
+.gallery-guide{padding-top:0}.gallery-guide .card{padding:1.4rem}
+.gallery-guide p+p{margin-top:.8rem}
+@media(max-width:48rem){.example-grid,.example-key{grid-template-columns:1fr}.example-source pre{max-height:none}}
+@media(max-width:360px){.modes{grid-template-columns:minmax(0,1fr)}.checker .suffix{font-size:.8rem}.checker button{padding:.7rem .9rem}.preview-page{padding:.8rem}.preview-card{padding:1.1rem}}
